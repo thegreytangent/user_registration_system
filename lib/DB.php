@@ -18,7 +18,7 @@ class DB {
 
 
   public function open_connection() {
-    $this->connection = new mysqli('localhost','root','','user_registration');
+    $this->connection = new mysqli('localhost','root','','users_registration');
     if ($this->connection->errno){
       die("Database error");
     }

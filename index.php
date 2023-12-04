@@ -48,6 +48,16 @@
                     <input name="confirm_password" type="text" class="form-control" />
                 </div>
 
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Firstname:</label>
+                    <input name="firstname" type="text" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Lastname:</label>
+                    <input name="lastname" type="text" class="form-control" />
+                </div>
+
             </div>
 
 

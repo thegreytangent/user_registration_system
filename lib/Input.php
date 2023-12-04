@@ -2,22 +2,12 @@
 /**
 * Created by Jason V. Castellano.
 */
-
-class Config {
-  public static function get($path = null) {
-    if ($path){
-      $config = $GLOBALS['config'];
-      $path = explode('/', $path);
-
-      foreach($path as $bit) {
-        if(isset($config[$bit])) {
-          $config = $config[$bit];
+class Input {
+    public static function get($value) {
+        if (isset($_POST[$value])) {
+            return $_POST[$value];
+        } else {
+            return $_GET[$value];
         }
-      }
-
-      return $config;
     }
-
-    return false;
-  }
 }

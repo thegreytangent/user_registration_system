@@ -1,24 +1,16 @@
-<?php
+<?php require './core/init.php'; ?>
+
+<?php 
 
 
-//READ
-$user = User::all();
+$username = Input::get('username');
+$password = Input::get('password');
+$confirm_password = Input::get('confirm_password');
+$firstname = Input::get('firstname');
+$lastname = Input::get('lastname');
 
 
-//CREATE
 $user = new User();
-$user->username ="sample";
-$user->password = "sample";
-$user->save();
-
-// UPDATE
-$user = User::find_by_id(1);
-$user->username = "change";
-$user->update();
-
-
-// DELETE
-$user = User::find_by_id(1);
-$user->delete();
-
-
+$user->username = $username;
+$user->password  = $user->securePassword();
+$user->create();

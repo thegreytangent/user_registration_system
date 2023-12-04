@@ -35,7 +35,9 @@
         </nav>
 
         <div class="row">
-            <div class="col-lg-12 col-sm-12">
+
+        <form action="user-add.php" method="POST">
+        <div class="col-lg-12 col-sm-12">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Username:</label>
                     <input name="username" type="text" class="form-control" />
@@ -60,6 +62,11 @@
                 </div>
 
             </div>
+
+            <button class="btn btn-success" type="submit">Save</button>
+        </form>
+           
+           
 
 
         </div>

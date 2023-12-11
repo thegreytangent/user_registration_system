@@ -43,12 +43,12 @@
             <form action="user-add.php" method="POST">
                 <div class="col-lg-12 col-sm-12">
 
-                    <?php if (isset($_GET['success'])): ?>
-                        <?php if ($_GET['success'] == "true") : ?>
+                    <?php if (Input::get('success')): ?>
+                        <?php if (Input::get('success') == "true") : ?>
                         <div class="alert alert-success" role="alert">
                             User has successfully registered!
                         </div>
-                        <?php elseif($_GET['success'] == "false"):?>
+                        <?php elseif(Input::get('success') == "false"):?>
                             <div class="alert alert-danger" role="alert">
                             User already exist!
                         </div>

@@ -9,10 +9,17 @@ $confirm_password = Input::get('confirm_password');
 $firstname = Input::get('firstname');
 $lastname = Input::get('lastname');
 
-$isExists = User::find_by('username', $username);
+$user = User::find_by('username', $username);
+
+if (!$username) {
+    header("location: index.php?success=false&msg=empty_username"); // 
+    exit();
+}
+
 
 if ($isExists) {
     header("location: index.php?success=false"); // query parameters
+    exit();
 } else {
     $user = new User();
     $user->username = $username;
@@ -20,6 +27,7 @@ if ($isExists) {
     $user->create();
 
     header("location: index.php?success=true"); // query parameters
+    exit();
 
 
 }

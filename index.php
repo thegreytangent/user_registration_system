@@ -16,82 +16,60 @@
 <body>
 
     <div class="container">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">User Registration</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Register</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
+
+        <?php include 'navbar.php'; ?>
 
         <div class="row">
 
-            <form action="user-add.php" method="POST">
-                <div class="col-lg-12 col-sm-12">
 
-                    <?php if (Input::get('success')): ?>
-                        <?php if (Input::get('success') == "true") : ?>
-                        <div class="alert alert-success" role="alert">
-                            User has successfully registered!
-                        </div>
-                        <?php elseif(Input::get('success') == "false"):?>
-                            <div class="alert alert-danger" role="alert">
-                            User already exist!
-                        </div>
-                        <?php endif;?>
-                    <?php endif;?>
+            <div class="col-lg-12 col-sm-12">
 
-
-
-
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Username:</label>
-                        <input name="username" type="text" class="form-control" />
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Password:</label>
-                        <input name="password" type="text" class="form-control" />
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Confirm Password:</label>
-                        <input name="confirm_password" type="text" class="form-control" />
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Firstname:</label>
-                        <input name="firstname" type="text" class="form-control" />
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Lastname:</label>
-                        <input name="lastname" type="text" class="form-control" />
-                    </div>
-
+                <?php if (Input::get('success')): ?>
+                <?php if (Input::get('success') == "true") : ?>
+                <div class="alert alert-success" role="alert">
+                    User has successfully registered!
                 </div>
+                <?php elseif(Input::get('success') == "false"):?>
+                <div class="alert alert-danger" role="alert">
+                    User already exist!
+                </div>
+                <?php endif;?>
+                <?php endif;?>
 
-                <button class="btn btn-success" type="submit">Save</button>
-            </form>
 
 
 
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Username</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach(User::find_all() as $user): ?>
+                        <tr>
+                            <th scope="row"><?php echo $user->username; ?></th>
+                            <td><?php echo $user->password; ?></td>
+                            <td>
+                                <button class="btn btn-info btn-sm">Edit</button>
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+
+                    </tbody>
+                </table>
+
+
+
+
+
+
+            </div>
 
         </div>
-
-    </div>
 
 
 

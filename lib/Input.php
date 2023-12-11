@@ -3,11 +3,14 @@
 * Created by Jason V. Castellano.
 */
 class Input {
+
     public static function get($value) {
         if (isset($_POST[$value])) {
             return $_POST[$value];
-        } else {
+        } elseif(isset($_GET[$value])) {
             return $_GET[$value];
+        } else {
+            return null;
         }
     }
 }

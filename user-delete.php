@@ -8,5 +8,5 @@ $user = new User();
 $user->id = $id;
 $user->delete();
 
-header("location: index.php?success=true&status=update"); // query parameters
+header("location: index.php?success=true&status=delete"); // query parameters
 exit();

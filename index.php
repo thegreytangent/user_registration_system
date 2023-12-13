@@ -35,7 +35,7 @@
                 </div>
                 <?php else :?>
                 <div class="alert alert-danger" role="alert">
-                There was error
+                User successfully remove!
                 </div>
                 <?php endif;?>
                 

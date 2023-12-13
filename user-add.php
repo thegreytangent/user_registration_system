@@ -26,7 +26,7 @@ if ($isExists) {
     $user->password  = $user->securePassword();
     $user->create();
 
-    header("location: index.php?success=true"); // query parameters
+    header("location: index.php?success=true&status=added"); // query parameters
     exit();
 
 

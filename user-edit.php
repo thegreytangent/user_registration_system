@@ -1,9 +1,13 @@
+<?php require './core/init.php'; ?>
+
+<?php 
+$user = User::find_by_id(Input::get('id'));
+
+
+?>
 
 
 
-
-
-            <?php require './core/init.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,35 +46,25 @@
                         <?php endif;?>
                     <?php endif;?>
 
-                    <form action="user-add.php" method="POST">
+                    <form action="user-update.php" method="POST">
                     
-                    <h3>Create User</h3>
+                    <h3>Update User</h3>
+                    <input type="hidden" value="<?php echo $user->id; ?>" name="id">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Username:</label>
-                        <input  name="username" type="text" class="form-control" />
+                        <input value="<?php echo $user->username; ?>" name="username" type="text" class="form-control" />
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Password:</label>
-                        <input required name="password" type="text" class="form-control" />
+                        <input value="<?php echo $user->password; ?>" required name="password" type="text" class="form-control" />
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Confirm Password:</label>
-                        <input required name="confirm_password" type="text" class="form-control" />
-                    </div>
+                
 
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Firstname:</label>
-                        <input required name="firstname" type="text" class="form-control" />
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Lastname:</label>
-                        <input required name="lastname" type="text" class="form-control" />
-                    </div>
+                
 
                 </div>
 
-                <button class="btn btn-success" type="submit">Save</button>
+                <button class="btn btn-info" type="submit">Update</button>
             </form>
                     
 

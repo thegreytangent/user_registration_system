@@ -125,9 +125,10 @@ public function update() {
   foreach ($properties as $key => $value) {
     $properties_pair[] = "{$key} = '{$value}'";
   }
+
   $sql = "UPDATE " . static::$table . " SET ";
   $sql .= implode(",", $properties_pair);
-  $sql .= " WHERE Id='" . DB::getInstance()->escape_string($this->Id) . "'";
+  $sql .= " WHERE id='" . DB::getInstance()->escape_string($this->id) . "'";
   $result = DB::getInstance()->query($sql);
   return ($result) ? TRUE : FALSE;
 }

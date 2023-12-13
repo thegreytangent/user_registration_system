@@ -25,15 +25,22 @@
             <div class="col-lg-12 col-sm-12">
 
                 <?php if (Input::get('success')): ?>
-                <?php if (Input::get('success') == "true") : ?>
+                <?php if (Input::get('status') == "added") : ?>
                 <div class="alert alert-success" role="alert">
                     User has successfully registered!
                 </div>
-                <?php elseif(Input::get('success') == "false"):?>
+                <?php elseif(Input::get('status') == "update"):?>
+                <div class="alert alert-info" role="alert">
+                User has successfully updated!
+                </div>
+                <?php else :?>
                 <div class="alert alert-danger" role="alert">
-                    User already exist!
+                There was error
                 </div>
                 <?php endif;?>
+                
+
+
                 <?php endif;?>
 
 
@@ -42,6 +49,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th scope="col">Id</th>
                             <th scope="col">Username</th>
                             <th scope="col">Password</th>
                             <th scope="col">Action</th>
@@ -50,10 +58,12 @@
                     <tbody>
                         <?php foreach(User::find_all() as $user): ?>
                         <tr>
+                            <td><?php echo $user->id; ?></td>
                             <th scope="row"><?php echo $user->username; ?></th>
                             <td><?php echo $user->password; ?></td>
                             <td>
-                                <button class="btn btn-info btn-sm">Edit</button>
+                                <a class="btn btn-info btn-sm" href="user-edit.php?id=<?php echo $user->id; ?>">Edit</a>
+                            
                                 <button class="btn btn-danger btn-sm">Delete</button>
                             </td>
                         </tr>
@@ -78,5 +88,28 @@
 
 
 </body>
+
+<script>
+        $(document).ready(function () {
+
+            $(".button_delete").click(function () {
+                if (confirm("Are you sure you want to delete this?")) {
+                    let id = $(this).attr("id");
+                    $.ajax({
+                        url: `/${id}`,
+                        type: 'DELETE',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success: function (result) {
+                            location.reload();
+                        }
+                    });
+                } else {
+                    return false;
+                }
+            });
+        });
+    </script>
 
 </html>

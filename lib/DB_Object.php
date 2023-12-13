@@ -142,7 +142,7 @@ public function save(){
 public function delete(){
   $database = DB::getInstance();
   $sql = "DELETE FROM " . static::$table;
-  $sql .= " WHERE Id='" . $database->escape_string($this->Id) . "'";
+  $sql .= " WHERE id='" . $database->escape_string($this->id) . "'";
   $database->query($sql);
   return (mysqli_affected_rows($database->connection) == 1) ? TRUE : FALSE;
 }

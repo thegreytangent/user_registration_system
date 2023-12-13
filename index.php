@@ -63,8 +63,7 @@
                             <td><?php echo $user->password; ?></td>
                             <td>
                                 <a class="btn btn-info btn-sm" href="user-edit.php?id=<?php echo $user->id; ?>">Edit</a>
-                            
-                                <button class="btn btn-danger btn-sm">Delete</button>
+                            <button id="<?php echo $user->id; ?>    " class="btn btn-danger btn-sm button_delete">Delete</button>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -89,22 +88,19 @@
 
 </body>
 
+
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+
 <script>
         $(document).ready(function () {
 
             $(".button_delete").click(function () {
                 if (confirm("Are you sure you want to delete this?")) {
                     let id = $(this).attr("id");
-                    $.ajax({
-                        url: `/${id}`,
-                        type: 'DELETE',
-                        data: {
-                            "_token": "{{ csrf_token() }}",
-                        },
-                        success: function (result) {
-                            location.reload();
-                        }
-                    });
+                    window.location.replace("user-delete.php?id=" + id);
                 } else {
                     return false;
                 }
